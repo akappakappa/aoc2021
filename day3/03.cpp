@@ -61,7 +61,7 @@ int main()
         // OXY
         get<3>(p) = get<0>(p);
         get<0>(p).clear();
-        for (int i = 0; i < get<3>(p).size(); i++)
+        for (int i = 0; i < get<3>(p).size() && get<3>(p).size() > 1; i++)
         {
             if (get<3>(p)[i][pos] == '1')
             {
@@ -82,7 +82,7 @@ int main()
         // CO2
         get<3>(p) = get<1>(p);
         get<1>(p).clear();
-        for (int i = 0; i < get<3>(p).size(); i++)
+        for (int i = 0; i < get<3>(p).size() && get<3>(p).size() > 1; i++)
         {
             if (get<3>(p)[i][pos] == '1')
             {
