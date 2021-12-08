@@ -2,6 +2,12 @@
     "files.associations": {
         "istream": "cpp",
         "*.tcc": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "tuple": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp",
+        "iosfwd": "cpp"
     }
 }
