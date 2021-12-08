@@ -66,27 +66,27 @@ int main()
                         if (!boards[j][l].first)
                             score += boards[j][l].second;
                     score *= nums[i];
-                    cout << score << "\n";
+                    cout << "Score: " << score << " | after extractions: " << i << "\n";
                     win = true;
                 }
             }
         }
     }
 
-    vector<int> wins;
     for (int i = 0; i < boards.size(); i++)
-        for (int j = 0; j < 25; j++)
-            boards[i][j].first = false;
-    for (int i = 0; i < nums.size() && wins.size() != boards.size(); i++)
+        for (int k = 0; k < 25; k++)
+            boards[i][k].first = false;
+    win = false;
+    bool ignore = false;
+    for (int i = 0; i < nums.size() && !win; i++)
     {
-        for (int j = 0; j < boards.size(); j++)
+        for (int j = 0; j < boards.size() && !win; j++)
         { // Change vals & check win
-            if (count(wins.begin(), wins.end(), j))
-                continue;
             for (int k = 0; k < 25; k++)
                 if (boards[j][k].second == nums[i])
                     boards[j][k].first = true;
-            for (int k = 0; k < 5; k++)
+            ignore = false;
+            for (int k = 0; k < 5 && !win && !ignore; k++)
             {
                 if ((boards[j][k * 5 + 0].first &&
                      boards[j][k * 5 + 1].first &&
@@ -99,15 +99,20 @@ int main()
                      boards[j][k + 5 * 3].first &&
                      boards[j][k + 5 * 4].first))
                 {
-                    wins.push_back(j);
-                    if (wins.size() == boards.size())
+                    if (boards.size() > 1)
+                    {
+                        boards.erase(boards.begin() + j--);
+                        ignore = true;
+                    }
+                    else
                     {
                         int score = 0;
                         for (int l = 0; l < 25; l++)
                             if (!boards[j][l].first)
                                 score += boards[j][l].second;
                         score *= nums[i];
-                        cout << score << "\n";
+                        cout << "Score: " << score << " | after extractions: " << i << "\n";
+                        win = true;
                     }
                 }
             }
